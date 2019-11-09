@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Authors | Academic</title>
+    <title>Authors | Raghav Chawla</title>
     <link>/authors/</link>
       <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
     <description>Authors</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 01 Oct 2019 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/img/icon-192.png</url>
       <title>Authors</title>
@@ -15,12 +15,91 @@
     <item>
       <title></title>
       <link>/authors/admin/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
       <guid>/authors/admin/</guid>
-      <description>&lt;p&gt;Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.&lt;/p&gt;
+      <description>&lt;p&gt;I am a Graphics Hardware Engineer in the Image Processing Unit at Intel India. At present, I am working on a new algorithm for the placement of memories in design based on connectivity with ports, other memories, and standard cell logic in the design.&lt;/p&gt;
 
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.&lt;/p&gt;
+&lt;p&gt;On the side of fun, I like to cook food for friends. I also like to write poems from time to time. You can read some of these here. On weekends, I can be found in a quiet corner at some literary event in Bangalore.&lt;/p&gt;
+
+&lt;p&gt;I graduated from IIT Roorkee in 2018, where I was advised by Dr. Anand Bulusu. During my time at IIT Roorkee, I have also had the pleasure to work with Dr. Sanjeev Manhas. For my hobby projects, I got to work on some interesting stuff at the Artificial Intelligence &amp;amp; Electronics Section, IEEE Student Branch, and Mobile Development Group at IIT Roorkee.&lt;/p&gt;
+
+&lt;p&gt;Over my bachelor’s, I have had the opportunity to explore many fields, ranging from Analog circuits, CMOS Devices to delay modeling in digital circuits. I also got to work on Industry research problems during my Internship at STMicroelectronics with Mr. Pratap Narayan Singh and during my major thesis at IIT Roorkee.&lt;/p&gt;
+
+&lt;p&gt;&lt;TA Ship &amp; SMP&gt;
+I like interacting with my juniors. I had the opportunity of serving as a Teaching Assistant for the course ‘Semiconductor Devices’ twice and a mentor in the Institute’s Student mentorship program for freshmen undergrads.&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>A. Sharma</title>
+      <link>/authors/a.-sharma/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>/authors/a.-sharma/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>P. N. Singh</title>
+      <link>/authors/p.-n.-singh/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>/authors/p.-n.-singh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pranshu Malik</title>
+      <link>/authors/pranshu-malik/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>/authors/pranshu-malik/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Arvind Sharma</title>
+      <link>/authors/arvind-sharma/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <guid>/authors/arvind-sharma/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Baljit Kaur</title>
+      <link>/authors/baljit-kaur/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <guid>/authors/baljit-kaur/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bulusu Anand</title>
+      <link>/authors/bulusu-anand/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <guid>/authors/bulusu-anand/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rajendra Pratap</title>
+      <link>/authors/rajendra-pratap/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <guid>/authors/rajendra-pratap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sarita Yadav</title>
+      <link>/authors/sarita-yadav/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <guid>/authors/sarita-yadav/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Naushad Alam</title>
+      <link>/authors/naushad-alam/</link>
+      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>/authors/naushad-alam/</guid>
+      <description></description>
     </item>
     
   </channel>
