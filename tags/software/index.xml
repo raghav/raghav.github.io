@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software | Raghav Chawla</title>
+    <link>/tags/software/</link>
+      <atom:link href="/tags/software/index.xml" rel="self" type="application/rss+xml" />
+    <description>Software</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 01 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/img/icon-192.png</url>
+      <title>Software</title>
+      <link>/tags/software/</link>
+    </image>
+    
+    <item>
+      <title>Dynamic Speed Limit</title>
+      <link>/project/dynamic-speed-limit/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>/project/dynamic-speed-limit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Propeller Clock</title>
+      <link>/project/propeller-clock/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>/project/propeller-clock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Timing Calibration Algorithm for Interleaved Current Steering DAC</title>
+      <link>/project/dac/</link>
+      <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/project/dac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>On Device Activity Recognition</title>
+      <link>/project/activity-recognition/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/project/activity-recognition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Campus Buddy</title>
+      <link>/project/campus-buddy/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/project/campus-buddy/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects | Raghav Chawla</title>
+    <link>/project/</link>
+      <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
+    <description>Projects</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 01 May 2018 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/img/icon-192.png</url>
+      <title>Projects</title>
+      <link>/project/</link>
+    </image>
+    
+    <item>
+      <title>Cell Delay modeling for TSV induced stress in 3D ICs</title>
+      <link>/project/delay-modeling-tsv/</link>
+      <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
+      <guid>/project/delay-modeling-tsv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Delay Modelling of a Static flip flop</title>
+      <link>/project/delay-modeling-flip-flop/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>/project/delay-modeling-flip-flop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dynamic Speed Limit</title>
+      <link>/project/dynamic-speed-limit/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>/project/dynamic-speed-limit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Propeller Clock</title>
+      <link>/project/propeller-clock/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>/project/propeller-clock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Timing Calibration Algorithm for Interleaved Current Steering DAC</title>
+      <link>/project/dac/</link>
+      <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/project/dac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>On Device Activity Recognition</title>
+      <link>/project/activity-recognition/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/project/activity-recognition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FPGA Implementation of Silicon Neurons</title>
+      <link>/project/fpga-silicon-neuron/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/project/fpga-silicon-neuron/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>I-V characteristic variations due to defects in CMOS</title>
+      <link>/project/defects-cmos/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/project/defects-cmos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Design of Analog Neuromorphic Circuits</title>
+      <link>/project/nueromorphic/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/project/nueromorphic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Campus Buddy</title>
+      <link>/project/campus-buddy/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/project/campus-buddy/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

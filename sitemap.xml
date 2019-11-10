@@ -4,7 +4,7 @@
   
   <url>
     <loc>/authors/admin/</loc>
-    <lastmod>2019-11-09T18:40:28+05:30</lastmod>
+    <lastmod>2019-11-09T20:28:08+05:30</lastmod>
   </url>
   
   <url>
@@ -44,7 +44,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-11-09T18:22:29+05:30</lastmod>
+    <lastmod>2019-11-10T20:10:32+05:30</lastmod>
   </url>
   
   <url>
@@ -78,6 +78,26 @@
   </url>
   
   <url>
+    <loc>/project/delay-modeling-tsv/</loc>
+    <lastmod>2019-11-10T18:39:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/hardware/</loc>
+    <lastmod>2019-11-10T20:10:32+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/</loc>
+    <lastmod>2019-11-10T20:10:32+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-11-10T20:10:32+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/publication/conference-paper-2018-international-symposium-on-devices-circuits-and-systems-isdcs/</loc>
     <lastmod>2019-11-09T18:22:29+05:30</lastmod>
   </url>
@@ -85,6 +105,56 @@
   <url>
     <loc>/authors/naushad-alam/</loc>
     <lastmod>2019-11-09T18:22:29+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/delay-modeling-flip-flop/</loc>
+    <lastmod>2019-11-10T18:39:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/dynamic-speed-limit/</loc>
+    <lastmod>2019-11-10T18:39:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/propeller-clock/</loc>
+    <lastmod>2019-11-10T20:10:32+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/software/</loc>
+    <lastmod>2019-11-10T20:10:32+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/dac/</loc>
+    <lastmod>2019-11-10T18:39:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/activity-recognition/</loc>
+    <lastmod>2019-11-10T18:39:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/fpga-silicon-neuron/</loc>
+    <lastmod>2019-11-10T18:39:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/defects-cmos/</loc>
+    <lastmod>2019-11-10T18:39:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/nueromorphic/</loc>
+    <lastmod>2019-11-10T18:39:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/campus-buddy/</loc>
+    <lastmod>2019-11-10T20:10:32+05:30</lastmod>
   </url>
   
   <url>
@@ -104,10 +174,6 @@
   <url>
     <loc>/talk/</loc>
     <lastmod>2019-05-06T17:54:11+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
   </url>
   
 </urlset>
