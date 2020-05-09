@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/authors/admin/</loc>
-    <lastmod>2019-11-12T20:55:28+05:30</lastmod>
+    <loc>/post/google_sideways/</loc>
+    <lastmod>2020-05-10T05:02:50+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/</loc>
+    <lastmod>2020-05-10T05:02:50+05:30</lastmod>
   </url>
   
   <url>
@@ -23,11 +28,6 @@
   </url>
   
   <url>
-    <loc>/authors/</loc>
-    <lastmod>2019-11-12T20:55:28+05:30</lastmod>
-  </url>
-  
-  <url>
     <loc>/authors/p.-n.-singh/</loc>
     <lastmod>2019-11-09T18:22:29+05:30</lastmod>
   </url>
@@ -40,11 +40,6 @@
   <url>
     <loc>/publication_types/</loc>
     <lastmod>2019-11-11T20:12:25+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-11-12T20:55:28+05:30</lastmod>
   </url>
   
   <url>
@@ -158,6 +153,11 @@
   </url>
   
   <url>
+    <loc>/authors/admin/</loc>
+    <lastmod>2019-11-13T02:06:17+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
   </url>
   
@@ -169,6 +169,11 @@
   <url>
     <loc>/publication/</loc>
     <lastmod>2019-11-09T16:15:36+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-03-17T20:39:18+00:00</lastmod>
   </url>
   
   <url>

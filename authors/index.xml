@@ -5,102 +5,12 @@
     <link>/authors/</link>
       <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
     <description>Authors</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 01 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 09 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/img/icon-192.png</url>
       <title>Authors</title>
       <link>/authors/</link>
     </image>
-    
-    <item>
-      <title></title>
-      <link>/authors/admin/</link>
-      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/authors/admin/</guid>
-      <description>&lt;p&gt;I am a Graphics Hardware Engineer in the Image Processing Unit at Intel India, working on Physical design optimization from synthesis to ECOs. At present, I am working on a new algorithm for the placement of memories in a design based on connectivity with ports, other memories, and standard cell logic in the design.&lt;/p&gt;
-
-&lt;p&gt;On the side of fun, I like to cook for friends &amp;amp; family. Ever so often, I also like to write poems at &lt;a href=&#34;https://www.yourquote.in/raghav-chawla-mdu8/quotes&#34; target=&#34;_blank&#34;&gt;YourQuote&lt;/a&gt;. On weekends, I can be found in a quiet corner at some literary event in Bangalore.&lt;/p&gt;
-
-&lt;p&gt;I graduated from IIT Roorkee in 2018, where I was advised by &lt;a href=&#34;https://www.iitr.ac.in/departments/ECE/pages/People+Faculty+Bulusu__Anand.html&#34; target=&#34;_blank&#34;&gt;Dr. Anand Bulusu&lt;/a&gt;. During my time at IIT Roorkee, I also had the pleasure to work with &lt;a href=&#34;https://www.iitr.ac.in/departments/ECE/pages/People+Faculty+Manhas__Sanjeev.html&#34; target=&#34;_blank&#34;&gt;Dr. Sanjeev Manhas&lt;/a&gt;. For my hobby projects, I worked on some interesting stuff at the Artificial Intelligence &amp;amp; Electronics Section, IEEE Student Branch, and Mobile Development Group at IIT Roorkee.&lt;/p&gt;
-
-&lt;p&gt;Over my bachelor’s, I had the opportunity to explore many fields, ranging from Analog circuits, CMOS Devices to delay modeling in digital circuits. I also got to work on Industry research problems during my Internship at STMicroelectronics with &lt;a href=&#34;https://www.linkedin.com/in/pratapns&#34; target=&#34;_blank&#34;&gt;Mr. Pratap Narayan Singh&lt;/a&gt; and during my major thesis at IIT Roorkee.&lt;/p&gt;
-
-&lt;p&gt;&lt;TA Ship &amp; SMP&gt;
-I like interacting with my juniors. I did serve as a Teaching Assistant for the course ‘Semiconductor Devices’ twice and a mentor in the Institute’s Student mentorship program for freshmen undergrads.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>A. Sharma</title>
-      <link>/authors/a.-sharma/</link>
-      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/authors/a.-sharma/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>P. N. Singh</title>
-      <link>/authors/p.-n.-singh/</link>
-      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/authors/p.-n.-singh/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Pranshu Malik</title>
-      <link>/authors/pranshu-malik/</link>
-      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/authors/pranshu-malik/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Arvind Sharma</title>
-      <link>/authors/arvind-sharma/</link>
-      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
-      <guid>/authors/arvind-sharma/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Baljit Kaur</title>
-      <link>/authors/baljit-kaur/</link>
-      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
-      <guid>/authors/baljit-kaur/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bulusu Anand</title>
-      <link>/authors/bulusu-anand/</link>
-      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
-      <guid>/authors/bulusu-anand/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rajendra Pratap</title>
-      <link>/authors/rajendra-pratap/</link>
-      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
-      <guid>/authors/rajendra-pratap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sarita Yadav</title>
-      <link>/authors/sarita-yadav/</link>
-      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
-      <guid>/authors/sarita-yadav/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Naushad Alam</title>
-      <link>/authors/naushad-alam/</link>
-      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>/authors/naushad-alam/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>
