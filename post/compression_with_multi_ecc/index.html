@@ -28,12 +28,11 @@
   
     
   
-  <meta name="description" content="This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “Sideways: Depth-Parallel Training of Video Models” and can be found here.
-The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.
-While reading this paper, I realize how no one could think of this idea before?">
+  <meta name="description" content="With the need for different properties (such as higher density, non-volatility, and higher performance) of memories, DRAM can’t be used for some applications. There are various candidates for replacing DRAMs such as PCM, STTRAM, and ReRAM. This research uses STTRAM because of zero leakage power and better endurance.
+However, there are many issues associated with this memory such as a) With read current getting comparable to the write currents at lower nodes because of the unidirectional read operation, the read operation can alter the stored value.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/google_sideways/">
+  <link rel="alternate" hreflang="en-us" href="/post/compression_with_multi_ecc/">
 
   
 
@@ -110,7 +109,7 @@ While reading this paper, I realize how no one could think of this idea before?"
   <link rel="icon" type="image/png" href="/img/icon-32.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/post/google_sideways/">
+  <link rel="canonical" href="/post/compression_with_multi_ecc/">
 
   
   
@@ -123,17 +122,16 @@ While reading this paper, I realize how no one could think of this idea before?"
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Raghav Chawla">
-  <meta property="og:url" content="/post/google_sideways/">
-  <meta property="og:title" content=" Google Sideways: My two cents | Raghav Chawla">
-  <meta property="og:description" content="This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “Sideways: Depth-Parallel Training of Video Models” and can be found here.
-The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.
-While reading this paper, I realize how no one could think of this idea before?"><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:url" content="/post/compression_with_multi_ecc/">
+  <meta property="og:title" content="Compression with Multi ECC Techniques | Raghav Chawla">
+  <meta property="og:description" content="With the need for different properties (such as higher density, non-volatility, and higher performance) of memories, DRAM can’t be used for some applications. There are various candidates for replacing DRAMs such as PCM, STTRAM, and ReRAM. This research uses STTRAM because of zero leakage power and better endurance.
+However, there are many issues associated with this memory such as a) With read current getting comparable to the write currents at lower nodes because of the unidirectional read operation, the read operation can alter the stored value."><meta property="og:image" content="/img/icon-192.png">
   <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-05-09T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-05-10T17:32:50&#43;05:30">
+    <meta property="article:modified_time" content="2020-05-09T00:00:00&#43;00:00">
   
 
   
@@ -159,12 +157,12 @@ While reading this paper, I realize how no one could think of this idea before?"
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/post/google_sideways/"
+    "@id": "/post/compression_with_multi_ecc/"
   },
-  "headline": " Google Sideways: My two cents",
+  "headline": "Compression with Multi ECC Techniques",
   
   "datePublished": "2020-05-09T00:00:00Z",
-  "dateModified": "2020-05-10T17:32:50+05:30",
+  "dateModified": "2020-05-09T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -179,7 +177,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       "url": "/img/icon-512.png"
     }
   },
-  "description": "This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “Sideways: Depth-Parallel Training of Video Models” and can be found here.\nThe basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.\nWhile reading this paper, I realize how no one could think of this idea before?"
+  "description": "With the need for different properties (such as higher density, non-volatility, and higher performance) of memories, DRAM can’t be used for some applications. There are various candidates for replacing DRAMs such as PCM, STTRAM, and ReRAM. This research uses STTRAM because of zero leakage power and better endurance.\nHowever, there are many issues associated with this memory such as a) With read current getting comparable to the write currents at lower nodes because of the unidirectional read operation, the read operation can alter the stored value."
 }
 </script>
 
@@ -197,7 +195,7 @@ While reading this paper, I realize how no one could think of this idea before?"
 
 
 
-  <title> Google Sideways: My two cents | Raghav Chawla</title>
+  <title>Compression with Multi ECC Techniques | Raghav Chawla</title>
 
 </head>
 
@@ -526,7 +524,7 @@ While reading this paper, I realize how no one could think of this idea before?"
   
   
 <div class="article-container pt-3">
-  <h1> Google Sideways: My two cents</h1>
+  <h1>Compression with Multi ECC Techniques</h1>
 
   
 
@@ -557,10 +555,8 @@ While reading this paper, I realize how no one could think of this idea before?"
     
     
       
-          Last updated on
-      
     
-    May 10, 2020
+    May 9, 2020
   </span>
   
 
@@ -605,52 +601,23 @@ While reading this paper, I realize how no one could think of this idea before?"
   <div class="article-container">
 
     <div class="article-style">
-      <p>This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “<em>Sideways: Depth-Parallel Training of Video Models</em>” and can be found <a href="https://arxiv.org/pdf/2001.06232.pdf">here</a>.</p>
+      <p>With the need for different properties (such as higher density, non-volatility, and higher performance) of memories, DRAM can’t be used for some applications. There are various candidates for replacing DRAMs such as PCM, STTRAM, and ReRAM. This research uses STTRAM because of zero leakage power and better endurance.</p>
 
-<p>The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.</p>
+<p>However, there are many issues associated with this memory such as a) With read current getting comparable to the write currents at lower nodes because of the unidirectional read operation, the read operation can alter the stored value. Since the read operation is asymmetric, this error comes when reading a 1 (i.e., it can switch 1 to 0), b) the time required for writing a data is lesser for writing a 0 as compared to writing a 1. Thus, write error occurs when current is removed before 1 has been written, c) Thermal instability of STTRAMs causes the stored data to flip. This stability can be increased by increasing the write current, thus reducing the write time. While the first 2 errors can be reduced by reducing the weight of hamming code (i.e., reducing the no. of 1s). the third can be reduced by increasing the robustness (by increasing the area).</p>
 
-<p>While reading this paper, I realize how no one could think of this idea before? Just look at the below image and see how thoughtful and simple this idea is.</p>
+<p>This paper proposes a new method for detecting and correcting errors in code while reading and writing data into STTRAM. The compression in code is important in the sense that it leaves bits for error detection and corrections schemes. Better the compression, better is the error correction possible. The paper proposes Compression with Multi-ECC (CME) approach, using a Bit plane compression (modified for 64-bit words) which consists of delta-BitPlane-XoR to transform the data &amp; encoding (run-length encoding combined with frequent pattern encoding) to compress the data, and using different types of correcting techniques according to the no. of bits in the compressed data. The proposed methodology copies the cache line only once and uses the duplicated data only if the original data has an error. The paper discusses the final cache line lengths based on the range in which compressed line length lies, padding 0s for the remaining bits.</p>
 
-<p><figure><img src="Sideways_Intro_1.PNG" alt="alt text" title="Sideways: Introduction"><figcaption>Sideways: Introduction</figcaption></figure></p>
+<p>Then, the authors prove how adding 4 bits to the code can increase its robustness and use Dynamic Programming to choose the 6 final codes. Another set of bits called tag bits is required to denote the compression and ECC techniques used on the original code. The paper discusses two methods for storing tag bits: to store these bits separately in the memory which would require the data to wait till these bits arrive (otherwise, the decoding of compressed data would have started after the first burst of data) causing latency overhead and second, to include these bits in the compressed cache line itself, causing ECC to store the compressed data in 8 lesser bits.</p>
 
-<p>It’s okay if this image does not click in the first impression. Read on, and I will try to explain as much as I could understand.</p>
+<p>The proposed methodology is evaluated against two design points in terms of write, read and retention error rates. The results show a reduction in hamming weight and thus, a reduction in block failure probability. It is observed that the failure probability increases when the hamming code is inverted (even though the inverted code has less weight). This is because the inversion requires an extra bit per word, reducing the no. of bits available for error detection &amp; correction schemes. This issue is handled by using a single bit for multiple inverted words and thus, saving the bits for ECC techniques.</p>
 
-<p>I am assuming that the reader is aware of the normal backpropagation algorithm used in neural networks. If not, a nice explanation can be found <a href="http://neuralnetworksanddeeplearning.com/chap2.html">here</a>.</p>
+<p>The paper then discusses the overheads due to ECC schemes: area overhead is not significant when compared to the processor size and energy overhead is &lt; 1% of per-bit read energy. For the scheme with separately stored tag bits, the proposed ECC decoding has no latency overhead while it is 1 cycle for the scheme with tag bits embedded into the cache line. Since the priority first word (intended to improve performance) cannot be implemented, it causes more latency overhead in both the schemes.</p>
 
-<p>What innovation the sideways algorithm brings is that while one input is being propagated forward and then backward in order to update the weights, the next input is not being used. The practical networks either skip some of the input samples in this time frame or wait for both the forward and backward passes to complete. This is clearly a waste of time that could be used. The reason this time could not be used is that in the conventional backpropagation, during the backward pass, the change in weight of a node in any layer is calculated by the activation fn. (calculated during the forward pass) and the derivative of cost w.r.t. weight (calculated during the backward pass). See the below equation for clarity:</p>
+<p>The above methodology is compared with another compression scheme: BΔI. While this compression scheme reduces the hamming weight more efficiently than BPC and thus is expected to have lower error rates, BPC outperforms BΔI when the extra bits available after compression are used for error detection and correction methods. Then, the paper analyzes the reliability of using STTRAMs instead of DRAMs. While the STTRAM promises higher density and non-volatility over DRAMs, it requires ECC protection and has read, write and retention errors which can be much worse than transient bit errors in DRAM. But when the proposed protection scheme is used along with scrubbing, STTRAMs can be as reliable as the DRAMs.</p>
 
-<p><figure><img src="BP_original_equation.PNG" alt="alt text" title="Backpropagation Update equation"><figcaption>Backpropagation Update equation</figcaption></figure></p>
+<p>While reading this paper, I thought of a suggestion to reduce the error magnitude if the code fails:</p>
 
-<p>Now, what sideways inherently assumes is that in any time series continuous data, some consecutive frames remain the same. Thus, the activation fn. due to these inputs will be approximately the same. So, we tweak our conventional backpropagation such that at every time sample, the new input is taken into the first layer and all the layers are propagated forward. On the side, the output cost fn. is calculated on the input which was N samples earlier (N being the no. of layers). Refer to the below image:</p>
-
-<p><figure><img src="Sideways_Complete_1.PNG" alt="alt text" title="Sideways Weights Update Method"><figcaption>Sideways Weights Update Method</figcaption></figure></p>
-
-<p>Now, for calculating any weight update, we see whichever latest backpropagated error is available at that time and multiply with the latest activation fn. Of the forward pass (Thus, the backpropagated error and the forward activation function are essentially of different input samples). The reason this is similar to the original backpropagation is that the input frames are continuous and thus, the activation functions and backpropagated errors won’t change much (except the frames near a change in the scene which can be ignored since that no. would be very small compared to the no. of total frames).</p>
-
-<p>“<em>Okay, so using sideways proves to be time-saving. But, is there any other advantage of why I should be using this?</em>”</p>
-
-<p>Well, yes. There is another improvement that we get which we may not have thought of while deploying sideways. When we keep on changing the inputs for updating the weights, the weights are not necessarily learning the feature of any particular input (since no weight update is dependent on any particular input, as opposed to conventional backpropagation which had every weight update to minimize the cost of every input). Thus, we are preventing our model to learn the intricacies of any particular input frames and thus, learn the overall features of the time series data. Or, to say in ML Lingo, we are introducing some sort of regularization in our model and thus, reducing overfitting. This effect is reflected in the tranining accuracy graphs as below:</p>
-
-<p><figure><img src="Training_Accuracy.PNG" alt="alt text" title="Training Accuracy: Backpropagation vs Sideways"><figcaption>Training Accuracy: Backpropagation vs Sideways</figcaption></figure>
-<h2><span style="color:navy">What Next?</span></h2></p>
-
-<p>“<em>These seem to be all good flowers. But there has to be a thorn in it. Is there any hidden drawback that we could have been missing?</em>”</p>
-
-<p>Yes, if we look closely, there are some drawbacks that may hinder the use of sideways in practical applications.</p>
-
-<p>For one, the loss function is pretty unstable, as seen in the following graph:</p>
-
-<p><figure><img src="BP_Sideways_Loss_Comparison.PNG" alt="alt text" title="Loss Function: Backpropagation vs Sideways"><figcaption>Loss Function: Backpropagation vs Sideways</figcaption></figure></p>
-
-<p>The reason for this instability is obviously that we are not calculating the loss function in the manner it should be. The minute changes in a frame to the next will cause some irregularity between the activation function and the error derivative to minimize the cost function.</p>
-
-<p>The reason this instability is a problem for us is that though the accuracy has improved (calculated by the no. of correct predictions), we have not considered the confidence in case of wrong predictions. According to this graph, the algorithm predicts with high confidence even if the prediction is wrong. However, in practical applications, we will prefer that the network should not be confident (i.e., the prediction probability should not be way above the threshold if the prediction is wrong).</p>
-
-<p>Second, The paper considers that conventional backpropagation has some sort of overfitting which is being regularized to some extent by the sideways. But, if we are able to reduce this overfitting in BP by techniques such as dropout and regularization (though this may not be practically possible, just considering the case here), will the sideways be able to match the BP accuracy since the weight updates in Sideways are noisy?</p>
-
-<p>Third, the Sideways is applicable for only time-series data. How can we modify the algorithm to make it work for non-time-series data as well? In hindsight, we just need to introduce some correlation between the consecutive activation functions so that we can use a similar concept. There can be multiple ways that can be tested such as taking average of the last two/three inputs while calculating the activation function (and similarly, averaging last derivatives during the backward pass).</p>
-
-<p>All in all, I think that this is a great concept for improving speed and accuracy. The improvement figures reported in the paper are groundbreaking. Since there will be more hardware resources required for implementing Sideways, this opens up for a lot of research in architectural implementation to increase resource sharing.</p>
+<p>If the code represents an integer, MSBs of the integers can have better error detection and correction schemes than LSBs. This way, if the correction method is unable to correct the code, there will be a minimal deviation from the actual value. For example, if the total compressed length is 46 bits, the 17 MSBs (after compression) can be represented with 19 extra bits for 3EC4ED and 29 LSBs can be represented with 7 LSBs for SECDED. This will require separate compression for MSBs and LSBs. When compared with using two codes each of 23 data bits and 13 extra bits for DECTED method, this method gives more emphasis on correcting MSB errors. This way, we can use a slightly deviated output if the intended application can bear some inaccuracy in the integer output.</p>
 
     </div>
 
@@ -673,7 +640,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/google_sideways/&amp;text=%20Google%20Sideways:%20My%20two%20cents" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/compression_with_multi_ecc/&amp;text=Compression%20with%20Multi%20ECC%20Techniques" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -686,7 +653,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/google_sideways/&amp;t=%20Google%20Sideways:%20My%20two%20cents" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/compression_with_multi_ecc/&amp;t=Compression%20with%20Multi%20ECC%20Techniques" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook-f"></i>
         </a>
       </li>
@@ -699,7 +666,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="mailto:?subject=%20Google%20Sideways:%20My%20two%20cents&amp;body=/post/google_sideways/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Compression%20with%20Multi%20ECC%20Techniques&amp;body=/post/compression_with_multi_ecc/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -712,7 +679,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/google_sideways/&amp;title=%20Google%20Sideways:%20My%20two%20cents" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/compression_with_multi_ecc/&amp;title=Compression%20with%20Multi%20ECC%20Techniques" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -725,7 +692,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=%20Google%20Sideways:%20My%20two%20cents%20/post/google_sideways/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=Compression%20with%20Multi%20ECC%20Techniques%20/post/compression_with_multi_ecc/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -738,7 +705,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/google_sideways/&amp;title=%20Google%20Sideways:%20My%20two%20cents" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/compression_with_multi_ecc/&amp;title=Compression%20with%20Multi%20ECC%20Techniques" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
