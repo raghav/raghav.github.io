@@ -28,9 +28,9 @@
   
     
   
-  <meta name="description" content="This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “Sideways: Depth-Parallel Training of Video Models” and can be found here.
-The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.
-While reading this paper, I realize how no one could think of this idea before?">
+  <meta name="description" content="Paper Referred: Sideways: Depth-Parallel Training of Video Models Authors: Mateusz Malinowski, Grzegorz Świrszcz, João Carreira, and Viorica Pătrăucean Why this research?
+This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020.
+The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/google_sideways/">
@@ -124,10 +124,10 @@ While reading this paper, I realize how no one could think of this idea before?"
   
   <meta property="og:site_name" content="Raghav Chawla">
   <meta property="og:url" content="/post/google_sideways/">
-  <meta property="og:title" content=" Google Sideways: My two cents | Raghav Chawla">
-  <meta property="og:description" content="This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “Sideways: Depth-Parallel Training of Video Models” and can be found here.
-The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.
-While reading this paper, I realize how no one could think of this idea before?"><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:title" content=" Google Sideways | Raghav Chawla">
+  <meta property="og:description" content="Paper Referred: Sideways: Depth-Parallel Training of Video Models Authors: Mateusz Malinowski, Grzegorz Świrszcz, João Carreira, and Viorica Pătrăucean Why this research?
+This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020.
+The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm."><meta property="og:image" content="/img/icon-192.png">
   <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
   
     
@@ -161,7 +161,7 @@ While reading this paper, I realize how no one could think of this idea before?"
     "@type": "WebPage",
     "@id": "/post/google_sideways/"
   },
-  "headline": " Google Sideways: My two cents",
+  "headline": " Google Sideways",
   
   "datePublished": "2020-05-09T00:00:00Z",
   "dateModified": "2020-05-10T17:32:50+05:30",
@@ -179,7 +179,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       "url": "/img/icon-512.png"
     }
   },
-  "description": "This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “Sideways: Depth-Parallel Training of Video Models” and can be found here.\nThe basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.\nWhile reading this paper, I realize how no one could think of this idea before?"
+  "description": "Paper Referred: Sideways: Depth-Parallel Training of Video Models Authors: Mateusz Malinowski, Grzegorz Świrszcz, João Carreira, and Viorica Pătrăucean Why this research?\nThis blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020.\nThe basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm."
 }
 </script>
 
@@ -197,7 +197,7 @@ While reading this paper, I realize how no one could think of this idea before?"
 
 
 
-  <title> Google Sideways: My two cents | Raghav Chawla</title>
+  <title> Google Sideways | Raghav Chawla</title>
 
 </head>
 
@@ -526,7 +526,7 @@ While reading this paper, I realize how no one could think of this idea before?"
   
   
 <div class="article-container pt-3">
-  <h1> Google Sideways: My two cents</h1>
+  <h1> Google Sideways</h1>
 
   
 
@@ -605,7 +605,12 @@ While reading this paper, I realize how no one could think of this idea before?"
   <div class="article-container">
 
     <div class="article-style">
-      <p>This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “<em>Sideways: Depth-Parallel Training of Video Models</em>” and can be found <a href="https://arxiv.org/pdf/2001.06232.pdf">here</a>.</p>
+      <p><h4><a style="color:navy"; font-weight:normal; href="https://arxiv.org/pdf/2001.06232.pdf"><u>Paper Referred</u></a>: Sideways: Depth-Parallel Training of Video Models</h4>
+<h4><span style="color:navy"; font-weight:normal>Authors</span>: Mateusz Malinowski, Grzegorz Świrszcz, João Carreira, and Viorica Pătrăucean</h4>
+<br>
+<h2><span style="color:navy">Why this research?</span></h2></p>
+
+<p>This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020.</p>
 
 <p>The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.</p>
 
@@ -615,7 +620,9 @@ While reading this paper, I realize how no one could think of this idea before?"
 
 <p>It’s okay if this image does not click in the first impression. Read on, and I will try to explain as much as I could understand.</p>
 
-<p>I am assuming that the reader is aware of the normal backpropagation algorithm used in neural networks. If not, a nice explanation can be found <a href="http://neuralnetworksanddeeplearning.com/chap2.html">here</a>.</p>
+<h2><span style="color:navy">The Paper</span></h2>
+
+<p>I am assuming that the reader is aware of the normal backpropagation algorithm used in neural networks. If not, a nice explanation can be found <a href="https://arxiv.org/pdf/2001.06232.pdf">here</a>.</p>
 
 <p>What innovation the sideways algorithm brings is that while one input is being propagated forward and then backward in order to update the weights, the next input is not being used. The practical networks either skip some of the input samples in this time frame or wait for both the forward and backward passes to complete. This is clearly a waste of time that could be used. The reason this time could not be used is that in the conventional backpropagation, during the backward pass, the change in weight of a node in any layer is calculated by the activation fn. (calculated during the forward pass) and the derivative of cost w.r.t. weight (calculated during the backward pass). See the below equation for clarity:</p>
 
@@ -632,7 +639,7 @@ While reading this paper, I realize how no one could think of this idea before?"
 <p>Well, yes. There is another improvement that we get which we may not have thought of while deploying sideways. When we keep on changing the inputs for updating the weights, the weights are not necessarily learning the feature of any particular input (since no weight update is dependent on any particular input, as opposed to conventional backpropagation which had every weight update to minimize the cost of every input). Thus, we are preventing our model to learn the intricacies of any particular input frames and thus, learn the overall features of the time series data. Or, to say in ML Lingo, we are introducing some sort of regularization in our model and thus, reducing overfitting. This effect is reflected in the tranining accuracy graphs as below:</p>
 
 <p><figure><img src="Training_Accuracy.PNG" alt="alt text" title="Training Accuracy: Backpropagation vs Sideways"><figcaption>Training Accuracy: Backpropagation vs Sideways</figcaption></figure>
-<h2><span style="color:navy">What Next?</span></h2></p>
+<h2><span style="color:navy">What Next? My two cents</span></h2></p>
 
 <p>“<em>These seem to be all good flowers. But there has to be a thorn in it. Is there any hidden drawback that we could have been missing?</em>”</p>
 
@@ -673,7 +680,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/google_sideways/&amp;text=%20Google%20Sideways:%20My%20two%20cents" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/google_sideways/&amp;text=%20Google%20Sideways" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -686,7 +693,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/google_sideways/&amp;t=%20Google%20Sideways:%20My%20two%20cents" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/google_sideways/&amp;t=%20Google%20Sideways" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook-f"></i>
         </a>
       </li>
@@ -699,7 +706,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="mailto:?subject=%20Google%20Sideways:%20My%20two%20cents&amp;body=/post/google_sideways/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=%20Google%20Sideways&amp;body=/post/google_sideways/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -712,7 +719,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/google_sideways/&amp;title=%20Google%20Sideways:%20My%20two%20cents" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/google_sideways/&amp;title=%20Google%20Sideways" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -725,7 +732,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=%20Google%20Sideways:%20My%20two%20cents%20/post/google_sideways/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=%20Google%20Sideways%20/post/google_sideways/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -738,7 +745,7 @@ While reading this paper, I realize how no one could think of this idea before?"
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/google_sideways/&amp;title=%20Google%20Sideways:%20My%20two%20cents" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/google_sideways/&amp;title=%20Google%20Sideways" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -783,7 +790,7 @@ While reading this paper, I realize how no one could think of this idea before?"
     <div class="media-body">
       <h5 class="card-title"><a href="/">Raghav Chawla</a></h5>
       <h6 class="card-subtitle">Graphics Hardware Engineer</h6>
-      <p class="card-text">My research interests include Device-Circuit co-design, Biomedical Circuits.</p>
+      
       <ul class="network-icon" aria-hidden="true">
   
     

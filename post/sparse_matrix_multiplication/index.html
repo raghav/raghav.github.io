@@ -28,7 +28,7 @@
   
     
   
-  <meta name="description" content="With the increasing demand of neural networks in new application areas and large no. of training features required for better accuracy, it is becoming increasingly important to reduce the memory required to store this data. Though the sparse matrix is an efficient way to store this data more efficiently, there is no efficient way for the sparse matrix to matrix multiplication. This paper proposes a new representation for sparse matrices and an architecture for their multiplication.">
+  <meta name="description" content="Paper Referred: Sparse Matrix to Matrix Multiplication: A Representation and Architecture for Acceleration Authors: Pareesa Ameneh Golnari, Sharad Malik Why this research? With the increasing demand of neural networks in new application areas and large no. of training features required for better accuracy, it is becoming increasingly important to reduce the memory required to store this data. Though the sparse matrix is an efficient way to store this data more efficiently, there is no efficient way for the sparse matrix to matrix multiplication.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/sparse_matrix_multiplication/">
@@ -122,14 +122,14 @@
   
   <meta property="og:site_name" content="Raghav Chawla">
   <meta property="og:url" content="/post/sparse_matrix_multiplication/">
-  <meta property="og:title" content=" Sparse Matrix Multiplication | Raghav Chawla">
-  <meta property="og:description" content="With the increasing demand of neural networks in new application areas and large no. of training features required for better accuracy, it is becoming increasingly important to reduce the memory required to store this data. Though the sparse matrix is an efficient way to store this data more efficiently, there is no efficient way for the sparse matrix to matrix multiplication. This paper proposes a new representation for sparse matrices and an architecture for their multiplication."><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:title" content="Sparse Matrix Multiplication | Raghav Chawla">
+  <meta property="og:description" content="Paper Referred: Sparse Matrix to Matrix Multiplication: A Representation and Architecture for Acceleration Authors: Pareesa Ameneh Golnari, Sharad Malik Why this research? With the increasing demand of neural networks in new application areas and large no. of training features required for better accuracy, it is becoming increasingly important to reduce the memory required to store this data. Though the sparse matrix is an efficient way to store this data more efficiently, there is no efficient way for the sparse matrix to matrix multiplication."><meta property="og:image" content="/img/icon-192.png">
   <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-05-09T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-05-09T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2020-05-10T18:38:14&#43;05:30">
   
 
   
@@ -157,10 +157,10 @@
     "@type": "WebPage",
     "@id": "/post/sparse_matrix_multiplication/"
   },
-  "headline": " Sparse Matrix Multiplication",
+  "headline": "Sparse Matrix Multiplication",
   
   "datePublished": "2020-05-09T00:00:00Z",
-  "dateModified": "2020-05-09T00:00:00Z",
+  "dateModified": "2020-05-10T18:38:14+05:30",
   
   "author": {
     "@type": "Person",
@@ -175,7 +175,7 @@
       "url": "/img/icon-512.png"
     }
   },
-  "description": "With the increasing demand of neural networks in new application areas and large no. of training features required for better accuracy, it is becoming increasingly important to reduce the memory required to store this data. Though the sparse matrix is an efficient way to store this data more efficiently, there is no efficient way for the sparse matrix to matrix multiplication. This paper proposes a new representation for sparse matrices and an architecture for their multiplication."
+  "description": "Paper Referred: Sparse Matrix to Matrix Multiplication: A Representation and Architecture for Acceleration Authors: Pareesa Ameneh Golnari, Sharad Malik Why this research? With the increasing demand of neural networks in new application areas and large no. of training features required for better accuracy, it is becoming increasingly important to reduce the memory required to store this data. Though the sparse matrix is an efficient way to store this data more efficiently, there is no efficient way for the sparse matrix to matrix multiplication."
 }
 </script>
 
@@ -193,7 +193,7 @@
 
 
 
-  <title> Sparse Matrix Multiplication | Raghav Chawla</title>
+  <title>Sparse Matrix Multiplication | Raghav Chawla</title>
 
 </head>
 
@@ -522,7 +522,7 @@
   
   
 <div class="article-container pt-3">
-  <h1> Sparse Matrix Multiplication</h1>
+  <h1>Sparse Matrix Multiplication</h1>
 
   
 
@@ -553,8 +553,10 @@
     
     
       
+          Last updated on
+      
     
-    May 9, 2020
+    May 10, 2020
   </span>
   
 
@@ -599,15 +601,22 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>With the increasing demand of neural networks in new application areas and large no. of training features required for better accuracy, it is becoming increasingly important to reduce the memory required to store this data. Though the sparse matrix is an efficient way to store this data more efficiently, there is no efficient way for the sparse matrix to matrix multiplication. This paper proposes a new representation for sparse matrices and an architecture for their multiplication. A speedup of 14-49 times in accessing the data and of 9-30 times in multiplication is demonstrated.</p>
+      <p><h4><a style="color:navy"; font-weight:normal; href="https://arxiv.org/pdf/1906.00327.pdf"><u>Paper Referred</u></a>: Sparse Matrix to Matrix Multiplication: A Representation and Architecture for Acceleration</h4>
+<h4><span style="color:navy"; font-weight:normal>Authors</span>: Pareesa Ameneh Golnari, Sharad Malik</h4>
+<br>
+<h2><span style="color:navy">Why this research?</span></h2>
+With the increasing demand of neural networks in new application areas and large no. of training features required for better accuracy, it is becoming increasingly important to reduce the memory required to store this data. Though the sparse matrix is an efficient way to store this data more efficiently, there is no efficient way for the sparse matrix to matrix multiplication. This paper proposes a new representation for sparse matrices and an architecture for their multiplication. A speedup of 14-49 times in accessing the data and of 9-30 times in multiplication is demonstrated.</p>
 
-<p>The paper compares the random data access cost of various sparse formats with compressed row storage (CRS) being one of the most efficient formats. This paper proposes an Indexed CRS format to reduce the complexity of accessing a non-zero data. Each row of the matrix is divided into sections and each section is further divided into blocks. Each section is represented by a counter vector which contains no. of non-zero values before this section followed by no. of non-zero values in each of its blocks. Any values in this representation can be transformed into the corresponding matrix index (and vice-versa) using the information in section counter vectors. To locate an element at (i, j), the corresponding section no. is ⌊<em>j/S</em>⌋ and block no. is ⌊<em>(j%s)/b</em>⌋ where S and b are the lengths of the section and block respectively. Thus, for searching an element (i,j), we need to see only the corresponding block, reducing the random memory access to (<em>b/2 + 1</em>). Comparing this with the conventional CRS format, memory access reduces by a factor of <em>ND/(b+2)</em> and required storage increases by a factor of <em>(2DS+1)/(2DS)</em>, where N is the no. of rows and D is density (ratio of no. of non-zeros to dataset size).</p>
+<h2><span style="color:navy">The Paper</span></h2>
+The paper compares the random data access cost of various sparse formats with compressed row storage (CRS) being one of the most efficient formats. This paper proposes an Indexed CRS format to reduce the complexity of accessing a non-zero data. Each row of the matrix is divided into sections and each section is further divided into blocks. Each section is represented by a counter vector which contains no. of non-zero values before this section followed by no. of non-zero values in each of its blocks. Any values in this representation can be transformed into the corresponding matrix index (and vice-versa) using the information in section counter vectors. To locate an element at (i, j), the corresponding section no. is ⌊*j/S*⌋ and block no. is ⌊*(j%s)/b*⌋ where S and b are the lengths of the section and block respectively. Thus, for searching an element (i,j), we need to see only the corresponding block, reducing the random memory access to (*b/2 + 1*). Comparing this with the conventional CRS format, memory access reduces by a factor of *ND/(b+2)* and required storage increases by a factor of *(2DS+1)/(2DS)*, where N is the no. of rows and D is density (ratio of no. of non-zeros to dataset size). 
 
-<p>Next, this paper proposes a new architecture for implementing the sparse matrix multiplication (SpMM) represented in the format described above. In this direction, the paper discusses an algorithm for a dot product of the 1st matrix’s row a with 2nd matrix’s column b. Comparing elements of these two vectors, if the index of a’s ith element equals b’s jth element in the original matrices (found using section counter vector), the product of their values is added to the dot product and both operands are incremented. Else, only the vector with the smaller index is checked for the next element. While this algorithm serves its purpose, it suffers from a slower movement of operands because operand with larger index is not incremented and stalling where the inputs are shared across multiple nodes.</p>
+Next, this paper proposes a new architecture for implementing the sparse matrix multiplication (SpMM) represented in the format described above. In this direction, the paper discusses an algorithm for a dot product of the 1st matrix’s row a with 2nd matrix’s column b. Comparing elements of these two vectors, if the index of a’s ith element equals b’s jth element in the original matrices (found using section counter vector), the product of their values is added to the dot product and both operands are incremented. Else, only the vector with the smaller index is checked for the next element. While this algorithm serves its purpose, it suffers from a slower movement of operands because operand with larger index is not incremented and stalling where the inputs are shared across multiple nodes. 
 
-<p>To account for these drawbacks, a synchronized mesh architecture is proposed. Each node of the mesh has a comparator, a buffer and a flag located before the MAC unit. Unlike the previous algorithm, if the indices of two operands at hand do not match, the operand with a larger index is stored in the buffer and the corresponding flag is set, thus avoiding stalling of the data and using two operands per cycle. During the next comparison of indices, the flag is read to indicate if a value is stored in the buffer. If the operand with the smaller index can be matched with a buffered value, buffered value is used for multiplication. Synchronization is performed at the end of every R elements and buffers are erased to ensure that operand buffers are most R (depth of operand) element in size, thus preventing any stall.</p>
+To account for these drawbacks, a synchronized mesh architecture is proposed. Each node of the mesh has a comparator, a buffer and a flag located before the MAC unit. Unlike the previous algorithm, if the indices of two operands at hand do not match, the operand with a larger index is stored in the buffer and the corresponding flag is set, thus avoiding stalling of the data and using two operands per cycle. During the next comparison of indices, the flag is read to indicate if a value is stored in the buffer. If the operand with the smaller index can be matched with a buffered value, buffered value is used for multiplication. Synchronization is performed at the end of every R elements and buffers are erased to ensure that operand buffers are most R (depth of operand) element in size, thus preventing any stall. 
 
-<p>Next, the proposed sparse format and multiplication algorithm are evaluated against various datasets. It is observed that this architecture’s acceleration increases (i.e., latency reduces) as the density (i.e., the ratio of no. of non-zero elements with dataset size) reduces. This architecture is then compared with previous approaches for the given range of densities. The proposed SpMM architecture shows a 15-39 times improvement over conventional matrix multiplication and 2-30 times improvement over FPIC.</p>
+Next, the proposed sparse format and multiplication algorithm are evaluated against various datasets. It is observed that this architecture’s acceleration increases (i.e., latency reduces) as the density (i.e., the ratio of no. of non-zero elements with dataset size) reduces. This architecture is then compared with previous approaches for the given range of densities. The proposed SpMM architecture shows a 15-39 times improvement over conventional matrix multiplication and 2-30 times improvement over FPIC. 
+
+<h2><span style="color:navy"></span></h2>
 
     </div>
 
@@ -630,7 +639,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/sparse_matrix_multiplication/&amp;text=%20Sparse%20Matrix%20Multiplication" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/sparse_matrix_multiplication/&amp;text=Sparse%20Matrix%20Multiplication" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -643,7 +652,7 @@
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/sparse_matrix_multiplication/&amp;t=%20Sparse%20Matrix%20Multiplication" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/sparse_matrix_multiplication/&amp;t=Sparse%20Matrix%20Multiplication" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook-f"></i>
         </a>
       </li>
@@ -656,7 +665,7 @@
       
       
       <li>
-        <a href="mailto:?subject=%20Sparse%20Matrix%20Multiplication&amp;body=/post/sparse_matrix_multiplication/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Sparse%20Matrix%20Multiplication&amp;body=/post/sparse_matrix_multiplication/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -669,7 +678,7 @@
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/sparse_matrix_multiplication/&amp;title=%20Sparse%20Matrix%20Multiplication" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/sparse_matrix_multiplication/&amp;title=Sparse%20Matrix%20Multiplication" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -682,7 +691,7 @@
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=%20Sparse%20Matrix%20Multiplication%20/post/sparse_matrix_multiplication/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=Sparse%20Matrix%20Multiplication%20/post/sparse_matrix_multiplication/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -695,7 +704,7 @@
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/sparse_matrix_multiplication/&amp;title=%20Sparse%20Matrix%20Multiplication" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/sparse_matrix_multiplication/&amp;title=Sparse%20Matrix%20Multiplication" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -740,7 +749,7 @@
     <div class="media-body">
       <h5 class="card-title"><a href="/">Raghav Chawla</a></h5>
       <h6 class="card-subtitle">Graphics Hardware Engineer</h6>
-      <p class="card-text">My research interests include Device-Circuit co-design, Biomedical Circuits.</p>
+      
       <ul class="network-icon" aria-hidden="true">
   
     
