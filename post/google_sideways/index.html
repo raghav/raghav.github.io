@@ -125,7 +125,7 @@ While reading this paper, I realize how no one could think of this idea before?"
     
       <meta property="article:published_time" content="2020-05-09T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-05-10T05:02:50&#43;05:30">
+    <meta property="article:modified_time" content="2020-05-10T17:32:50&#43;05:30">
   
 
   
@@ -156,7 +156,7 @@ While reading this paper, I realize how no one could think of this idea before?"
   "headline": " Google Sideways: My two cents",
   
   "datePublished": "2020-05-09T00:00:00Z",
-  "dateModified": "2020-05-10T05:02:50+05:30",
+  "dateModified": "2020-05-10T17:32:50+05:30",
   
   "author": {
     "@type": "Person",
@@ -358,7 +358,7 @@ While reading this paper, I realize how no one could think of this idea before?"
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#accomplishments"><span>Accomplishments</span></a>
+          <a class="nav-link " href="/#accomplishments"><span>Awards</span></a>
         </li>
 
         
@@ -597,7 +597,7 @@ While reading this paper, I realize how no one could think of this idea before?"
   <div class="article-container">
 
     <div class="article-style">
-      <p>This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “Sideways: Depth-Parallel Training of Video Models” and can be found here.</p>
+      <p>This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020. The paper being referred to is “<em>Sideways: Depth-Parallel Training of Video Models</em>” and can be found <a href="https://arxiv.org/pdf/2001.06232.pdf">here</a>.</p>
 
 <p>The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.</p>
 
@@ -607,7 +607,7 @@ While reading this paper, I realize how no one could think of this idea before?"
 
 <p>It’s okay if this image does not click in the first impression. Read on, and I will try to explain as much as I could understand.</p>
 
-<p>I am assuming that the reader is aware of the normal backpropagation algorithm used in neural networks. If not, a nice explanation can be found <a href="http://neuralnetworksanddeeplearning.com/chap2.html"><strong>here</strong></a>.</p>
+<p>I am assuming that the reader is aware of the normal backpropagation algorithm used in neural networks. If not, a nice explanation can be found <a href="http://neuralnetworksanddeeplearning.com/chap2.html">here</a>.</p>
 
 <p>What innovation the sideways algorithm brings is that while one input is being propagated forward and then backward in order to update the weights, the next input is not being used. The practical networks either skip some of the input samples in this time frame or wait for both the forward and backward passes to complete. This is clearly a waste of time that could be used. The reason this time could not be used is that in the conventional backpropagation, during the backward pass, the change in weight of a node in any layer is calculated by the activation fn. (calculated during the forward pass) and the derivative of cost w.r.t. weight (calculated during the backward pass). See the below equation for clarity:</p>
 
@@ -619,11 +619,14 @@ While reading this paper, I realize how no one could think of this idea before?"
 
 <p>Now, for calculating any weight update, we see whichever latest backpropagated error is available at that time and multiply with the latest activation fn. Of the forward pass (Thus, the backpropagated error and the forward activation function are essentially of different input samples). The reason this is similar to the original backpropagation is that the input frames are continuous and thus, the activation functions and backpropagated errors won’t change much (except the frames near a change in the scene which can be ignored since that no. would be very small compared to the no. of total frames).</p>
 
-<p>“Okay, so using sideways proves to be time-saving. But, is there any other advantage of why I should be using this?”</p>
+<p>“<em>Okay, so using sideways proves to be time-saving. But, is there any other advantage of why I should be using this?</em>”</p>
 
-<p>Well, yes. There is another improvement that we get which we may not have thought of while deploying sideways. When we keep on changing the inputs for updating the weights, the weights are not necessarily learning the feature of any particular input (since no weight update is dependent on any particular input, as opposed to conventional backpropagation which had every weight update to minimize the cost of every input). Thus, we are preventing our model to learn the intricacies of any particular input frames and thus, learn the overall features of the time series data. Or, to say in ML Lingo, we are introducing some sort of regularization in our model and thus, reducing overfitting. This effect is reflected in the testing accuracy graphs as below:</p>
+<p>Well, yes. There is another improvement that we get which we may not have thought of while deploying sideways. When we keep on changing the inputs for updating the weights, the weights are not necessarily learning the feature of any particular input (since no weight update is dependent on any particular input, as opposed to conventional backpropagation which had every weight update to minimize the cost of every input). Thus, we are preventing our model to learn the intricacies of any particular input frames and thus, learn the overall features of the time series data. Or, to say in ML Lingo, we are introducing some sort of regularization in our model and thus, reducing overfitting. This effect is reflected in the tranining accuracy graphs as below:</p>
 
-<p>“These seem to be all good flowers. But there has to be a thorn in it. Is there any hidden drawback that we could have been missing?”</p>
+<p><figure><img src="Training_Accuracy.PNG" alt="alt text" title="Training Accuracy: Backpropagation vs Sideways"><figcaption>Training Accuracy: Backpropagation vs Sideways</figcaption></figure>
+<h2><span style="color:navy">What Next?</span></h2></p>
+
+<p>“<em>These seem to be all good flowers. But there has to be a thorn in it. Is there any hidden drawback that we could have been missing?</em>”</p>
 
 <p>Yes, if we look closely, there are some drawbacks that may hinder the use of sideways in practical applications.</p>
 
