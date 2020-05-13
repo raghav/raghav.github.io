@@ -74,21 +74,145 @@
     </item>
     
     <item>
+      <title>Analog Neuromorphic Velocity Sensor</title>
+      <link>/post/analog_neuromorphic/</link>
+      <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/analog_neuromorphic/</guid>
+      <description>&lt;h4&gt;&lt;a style=&#34;color:navy&#34;; font-weight:normal; href=&#34;http://www.ini.uzh.ch/~kramer/pub/cas97.pdf&#34;&gt;&lt;u&gt;Paper Referred&lt;/u&gt;&lt;/a&gt;: Pulse-Based Analog VLSI Velocity Sensors&lt;/h4&gt;
+&lt;h4&gt;&lt;span style=&#34;color:navy&#34;; font-weight:normal&gt;Authors&lt;/span&gt;: Jorg Kramer, Rahul Sarpeshkar, and Christof Koch&lt;/h4&gt;
+&lt;br&gt;
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;Why this research?&lt;/span&gt;&lt;/h2&gt;
+
+The research  in neuromorphic algorithms and bio-inspired hardware has gained a lot of research in recent years. In this direction, this paper tries to mimic the basic function of human eye, i.e., to detect a moving object and its direction of motion, and to calculate its approximate speed. The perception of the object is based upon change in illumination due to the object, as detected by photodiodes. The current from the photodiodes is then processed to calculate the desired features, via a circuit presented in this paper. Besides calcualating the results correctly, we aim to  have the following features in our system:
+&lt;ul&gt;
+&lt;li&gt; Real time detection of the features to interact with a dynamic environment &lt;/li&gt;
+&lt;li&gt; Small area and low power requirements so that it can be used in IoT sensors &lt;/li&gt; 
+&lt;li&gt; Low computation requirements to reduce cost of the sensor &lt;/li&gt;
+&lt;/ul&gt;
+
+There are two types of intensity based motion algorithms: gradient based and correlation based. The token-based methods are more promising as they work intwo stage: first extracting some specific features from the image like edges, corners, etc. and then, tracking these features across time to calculate velocity and direction of motion. Implementing this method with computer vision algorithms is generally computationally expensive and thus, we require a simple circuit to implement our token-based algorithms.
+
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;The Paper&lt;/span&gt;&lt;/h2&gt;
+
+The complete circuit described in the paper is divided into two parts: Feature extraction stage and velocity computation stage. For the first stage, the circuit called *Temporal Edge Detector* converts changes in irradiance at two different positions to thin current pulses. For the second stage, these current pulses are given as inputs to *Voltage Shaping Circuits* and *Motion Circuits* (one for each direction of motion).
+
+![alt text](Introduction_Flow_Chart.PNG &#34;Circuit Flow Chart&#34;)
+
+Note that temporal edge detector and pulse shaping circuit are shared between both directions&#39; motion circuits to optimize resources and area.
+
+There are two types of motion circuits: *facilitate and trigger* (FT) and *facilitate and sample* (FS). FT motion circuit measures the time overlap between the binary pulses produced by two adjacent pulse shaping circuits and FS motion circuit samples the time varying output of first pulse shaping circuit by a thin pulse produced by second pulse shaping circuit. See the below images for clarity:
+
+&lt;div class=&#34;row&#34;&gt;
+  &lt;div class=&#34;column&#34;&gt;
+    &lt;figure&gt;
+    &lt;img src=&#34;FT_motion_circuit_1.PNG&#34; alt=&#34;Snow&#34; style=&#34;height:50%&#34;&gt;
+    &lt;figcaption&gt;FT Motion Circuit &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+  &lt;/div&gt;
+  &lt;div class=&#34;column&#34;&gt;
+    &lt;figure&gt;
+    &lt;img src=&#34;FS_motion_circuit_1.PNG&#34; alt=&#34;Forest&#34; style=&#34;height:100%&#34;&gt;
+    &lt;figcaption&gt;FS Motion Circuit &lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+Direction sensitivity is obtained by the fact that we get output only if P1 precedes P2.
+
+
+&lt;h3&gt;&lt;span style=&#34;color:navy&#34;&gt;Temporal Edge Detector&lt;/span&gt;&lt;/h3&gt;
+
+The Temporal Edge Detector Circuit converts a rapid increase in brightness to a current pulse. The circuit diagram is shown below:
+
+![alt text](Temporal_Edge_Detector_1.PNG &#34;Temporal Edge Detector Circuit&#34;)
+
+The diode D1, transistors Q1-Q4 and capacitors C1-C2 constitute a photoreceptor. This photoreceptor converts a change &amp;Delta;E in illumination E to a change in output voltage &amp;Delta;Vph as:
+
+![alt text](Photoreceptor_Equation.PNG &#34;Photoreceptor Output Equation&#34;)
+
+The output of the photoreceptor are the positive voltage spikes corresponding to ON stages. This is then converted to ON current by the next circuit. The transistors Q5-Q9 constitute an operational amplifier with a bias,connected to some other transistors Q10-Q13 and capacitors C3-C5, so that it is in a noninverting feedback configuration.The adaptive element Q10 is a sinh element, identical to that used in the photoreceptor, that prevents the node V- of the amplifier from floating by slowly adapting it to Vint. The current charging the node V- is given by: 
+
+&lt;div class=&#34;row&#34;&gt;
+  &lt;div class=&#34;column&#34;&gt;
+    &lt;img src=&#34;OpAmp_Eq_1.PNG&#34; alt=&#34;Snow&#34; style=&#34;height:50%&#34;&gt;
+  &lt;/div&gt;
+  &lt;div class=&#34;column&#34;&gt;
+    &lt;img src=&#34;OpAmp_Eq_2.PNG&#34; alt=&#34;Forest&#34; style=&#34;height:50%&#34;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+Detection of an ON edge causes Ie to be positive, supplied by Q12, whereas detection of an OFF edge causes it to be negative, supplied by Q11.
+
+Choosing to detect ON edges only, we sense the current in Q12 with the diode-connected Q13 and use Ve to mirror copies of it to succeeding circuits. The circuit thus serves as a differentiating, amplifying, and half-wave-rectifying element all-in-one.
+
+As long as Q12 is completely turned on, i.e., during sufficiently large ON edge transients, we can calculate the magnitude of the
+resulting output current pulse as:
+
+![alt text](Temporal_Output_Eq_1.PNG &#34;Edge Detector Output Current Equation&#34;)
+
+The output current Ie of the edge detector is then proportional to the temporal contrast , which is the product of the velocity and the spatial contrast , i.e.
+
+
+![alt text](Temporal_Output_Eq_2.PNG &#34;&#34;)
+
+
+&lt;h3&gt;&lt;span style=&#34;color:navy&#34;&gt;Pulse Shaping Circuit&lt;/span&gt;&lt;/h3&gt;
+
+The output current from the temporal edge detector is fed into the pulse shaping circuit. The pulse shaping circuit depends upon the motion circuit being used (i.e., FT or FS). The required output pulses from the pulse shaping circuit are:
+
+The FT motion sensor uses a nonlinear filtering circuit to convert the current pulse from the edge detector into a thin voltage spike that is translated into a voltage pulse of fixed amplitude and width by a refractory neuron circuit. 
+
+The FS motion sensor uses the same nonlinear filter to convert the current pulse from the edge detector into two signals, a thin voltage spike and a slowly decaying voltage signal. 
+
+Thus, we require nonlinear filter and refractory neuron circuits as pulse shaping circuits.
+
+&lt;h4&gt;&lt;span style=&#34;color:navy&#34;&gt;Nonlinear Filter&lt;/span&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Nonlinear_filter.PNG&#34; alt=&#34;alt text&#34; title=&#34;Nonlinear Filter Circuit&#34;&gt;&lt;figcaption&gt;Nonlinear Filter Circuit&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;The input to the circuit Iin is a current proportional to Ie, obtained from the mirror formed by connecting the output voltage of the edge detector ( Ve) to Vin of the filtering circuit. In response to an input current pulse, two voltage signals are generated: The voltage Vf produces a sharp spike, while the voltage Vs responds with a sharp onset and a log(t) like decay. The input Iin may be thought of as an impulse that sets the initial condition on the diode-capacitor
+subcircuit of Q4, Q5 and C.&lt;/p&gt;
+
+&lt;p&gt;For an initial condition with a pulse amplitude of Io, the diode-capacitor current Iout is given by&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Nonlinear_filter_Eq_1.PNG&#34; alt=&#34;alt text&#34;&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;After a sufficiently long time , such that Io&lt;em&gt;t &amp;gt;&amp;gt; C&lt;/em&gt;Vk, Iout(t) = C*Vk/t,&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Nonlinear_filter_Eq_2.PNG&#34; alt=&#34;alt text&#34;&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that the circuit does not have an explicit threshold for the value of Io where contrast-insensitivity begins. Neither does Vs have an explicit time constant determined by a bias voltage, since a diode-capacitor configuration intrinsically adapts to time constants over many orders of magnitude.&lt;/p&gt;
+
+&lt;h4&gt;&lt;span style=&#34;color:navy&#34;&gt;Refractory Neuron Circuit&lt;/span&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Nonlinear_filter.PNG&#34; alt=&#34;alt text&#34; title=&#34;Refractory Neuron Circuit&#34;&gt;&lt;figcaption&gt;Refractory Neuron Circuit&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;The voltage Vp represents the membrane potential and rests at ground. The voltage Vn represents the state of activation of the sodium
+conductance modeled by Q5-Q12 and rests at Vdd. The bias voltage Vl sets the leak current through Q4. The bias voltage Vd sets the pulse width of the output pulse. The bias voltage Vr sets the refractory period of the neuron or the minimum time between output pulses.&lt;/p&gt;
+
+&lt;h3&gt;&lt;span style=&#34;color:navy&#34;&gt;Results&lt;/span&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Results_1.PNG&#34; alt=&#34;alt text&#34; title=&#34;Voltage variation of different stages of the circuit&#34;&gt;&lt;figcaption&gt;Voltage variation of different stages of the circuit&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Results_2.PNG&#34; alt=&#34;alt text&#34; title=&#34;Voltage variation of different stages of the circuit&#34;&gt;&lt;figcaption&gt;Voltage variation of different stages of the circuit&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Compression with Multi ECC Techniques</title>
       <link>/post/compression_with_multi_ecc/</link>
       <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
       <guid>/post/compression_with_multi_ecc/</guid>
-      <description>&lt;p&gt;&lt;h4&gt;&lt;a style=&#34;color:navy&#34;; font-weight:normal; href=&#34;https://nanocad.ee.ucla.edu/wp-content/papercite-data/pdf/w15.pdf&#34;&gt;&lt;u&gt;Paper Referred&lt;/u&gt;&lt;/a&gt;: Compression with Multi-ECC: Enhanced Error
-Resiliency for Magnetic Memories&lt;/h4&gt;
+      <description>&lt;p&gt;&lt;h4&gt;&lt;a style=&#34;color:navy&#34;; font-weight:normal; href=&#34;https://nanocad.ee.ucla.edu/wp-content/papercite-data/pdf/w15.pdf&#34;&gt;&lt;u&gt;Paper Referred&lt;/u&gt;&lt;/a&gt;: Compression with Multi-ECC: Enhanced Error Resiliency for Magnetic Memories&lt;/h4&gt;
 &lt;h4&gt;&lt;span style=&#34;color:navy&#34;; font-weight:normal&gt;Authors&lt;/span&gt;: Irina Alam, Saptadeep Pal and Puneet Gupta&lt;/h4&gt;
 &lt;br&gt;
 &lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;Why this research?&lt;/span&gt;&lt;/h2&gt;&lt;/p&gt;
 
 &lt;p&gt;With the need for different properties (such as higher density, non-volatility, and higher performance) of memories, DRAM can’t be used for some applications. There are various candidates for replacing DRAMs such as PCM, STTRAM, and ReRAM. This research uses STTRAM because of zero leakage power and better endurance.&lt;/p&gt;
 
-&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;STT_RAM_Schematic.PNG&#34; alt=&#34;alt text&#34; title=&#34;Schematic of STT-RAM showing the anti-parallel and
-parallel states&#34;&gt;&lt;figcaption&gt;Schematic of STT-RAM showing the anti-parallel and
-parallel states&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;STT_RAM_Schematic.PNG&#34; alt=&#34;alt text&#34; title=&#34;Schematic of STT-RAM showing the anti-parallel and parallel states&#34;&gt;&lt;figcaption&gt;Schematic of STT-RAM showing the anti-parallel and parallel states&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 
 &lt;p&gt;However, there are many issues associated with this memory such as a) With read current getting comparable to the write currents at lower nodes because of the unidirectional read operation, the read operation can alter the stored value. Since the read operation is asymmetric, this error comes when reading a 1 (i.e., it can switch 1 to 0), b) the time required for writing a data is lesser for writing a 0 as compared to writing a 1. Thus, write error occurs when current is removed before 1 has been written, c) Thermal instability of STTRAMs causes the stored data to flip. This stability can be increased by increasing the write current, thus reducing the write time. While the first 2 errors can be reduced by reducing the weight of hamming code (i.e., reducing the no. of 1s). the third can be reduced by increasing the robustness (by increasing the area).&lt;/p&gt;
 
