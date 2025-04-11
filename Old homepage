@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Raghav Chawla</title>
+    <link>/</link>
+      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <description>Raghav Chawla</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <image>
+      <url>/img/icon-192.png</url>
+      <title>Raghav Chawla</title>
+      <link>/</link>
+    </image>
+    
+    <item>
+      <title> Google Sideways</title>
+      <link>/post/google_sideways/</link>
+      <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/google_sideways/</guid>
+      <description>&lt;p&gt;&lt;h4&gt;&lt;a style=&#34;color:navy&#34;; font-weight:normal; href=&#34;https://arxiv.org/pdf/2001.06232.pdf&#34;&gt;&lt;u&gt;Paper Referred&lt;/u&gt;&lt;/a&gt;: Sideways: Depth-Parallel Training of Video Models&lt;/h4&gt;
+&lt;h4&gt;&lt;span style=&#34;color:navy&#34;; font-weight:normal&gt;Authors&lt;/span&gt;: Mateusz Malinowski, Grzegorz Świrszcz, João Carreira, and Viorica Pătrăucean&lt;/h4&gt;
+&lt;br&gt;
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;Why this research?&lt;/span&gt;&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;This blog talks about a recent improvement in the backpropagation in neural networks and was introduced by Google Deepmind in 2020.&lt;/p&gt;
+
+&lt;p&gt;The basic idea is to use the time between the forward and backward passes of two consecutive inputs in a neural network, which was completely unused in the conventional backpropagation algorithm.&lt;/p&gt;
+
+&lt;p&gt;While reading this paper, I realize how no one could think of this idea before? Just look at the below image and see how thoughtful and simple this idea is.&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Sideways_Intro_1.PNG&#34; alt=&#34;alt text&#34; title=&#34;Sideways: Introduction&#34;&gt;&lt;figcaption&gt;Sideways: Introduction&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s okay if this image does not click in the first impression. Read on, and I will try to explain as much as I could understand.&lt;/p&gt;
+
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;The Paper&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;I am assuming that the reader is aware of the normal backpropagation algorithm used in neural networks. If not, a nice explanation can be found &lt;a href=&#34;https://arxiv.org/pdf/2001.06232.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;What innovation the sideways algorithm brings is that while one input is being propagated forward and then backward in order to update the weights, the next input is not being used. The practical networks either skip some of the input samples in this time frame or wait for both the forward and backward passes to complete. This is clearly a waste of time that could be used. The reason this time could not be used is that in the conventional backpropagation, during the backward pass, the change in weight of a node in any layer is calculated by the activation fn. (calculated during the forward pass) and the derivative of cost w.r.t. weight (calculated during the backward pass). See the below equation for clarity:&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;BP_original_equation.PNG&#34; alt=&#34;alt text&#34; title=&#34;Backpropagation Update equation&#34;&gt;&lt;figcaption&gt;Backpropagation Update equation&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, what sideways inherently assumes is that in any time series continuous data, some consecutive frames remain the same. Thus, the activation fn. due to these inputs will be approximately the same. So, we tweak our conventional backpropagation such that at every time sample, the new input is taken into the first layer and all the layers are propagated forward. On the side, the output cost fn. is calculated on the input which was N samples earlier (N being the no. of layers). Refer to the below image:&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Sideways_Complete_1.PNG&#34; alt=&#34;alt text&#34; title=&#34;Sideways Weights Update Method&#34;&gt;&lt;figcaption&gt;Sideways Weights Update Method&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, for calculating any weight update, we see whichever latest backpropagated error is available at that time and multiply with the latest activation fn. Of the forward pass (Thus, the backpropagated error and the forward activation function are essentially of different input samples). The reason this is similar to the original backpropagation is that the input frames are continuous and thus, the activation functions and backpropagated errors won’t change much (except the frames near a change in the scene which can be ignored since that no. would be very small compared to the no. of total frames).&lt;/p&gt;
+
+&lt;p&gt;“&lt;em&gt;Okay, so using sideways proves to be time-saving. But, is there any other advantage of why I should be using this?&lt;/em&gt;”&lt;/p&gt;
+
+&lt;p&gt;Well, yes. There is another improvement that we get which we may not have thought of while deploying sideways. When we keep on changing the inputs for updating the weights, the weights are not necessarily learning the feature of any particular input (since no weight update is dependent on any particular input, as opposed to conventional backpropagation which had every weight update to minimize the cost of every input). Thus, we are preventing our model to learn the intricacies of any particular input frames and thus, learn the overall features of the time series data. Or, to say in ML Lingo, we are introducing some sort of regularization in our model and thus, reducing overfitting. This effect is reflected in the tranining accuracy graphs as below:&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Training_Accuracy.PNG&#34; alt=&#34;alt text&#34; title=&#34;Training Accuracy: Backpropagation vs Sideways&#34;&gt;&lt;figcaption&gt;Training Accuracy: Backpropagation vs Sideways&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;What Next? My two cents&lt;/span&gt;&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;“&lt;em&gt;These seem to be all good flowers. But there has to be a thorn in it. Is there any hidden drawback that we could have been missing?&lt;/em&gt;”&lt;/p&gt;
+
+&lt;p&gt;Yes, if we look closely, there are some drawbacks that may hinder the use of sideways in practical applications.&lt;/p&gt;
+
+&lt;p&gt;For one, the loss function is pretty unstable, as seen in the following graph:&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;BP_Sideways_Loss_Comparison.PNG&#34; alt=&#34;alt text&#34; title=&#34;Loss Function: Backpropagation vs Sideways&#34;&gt;&lt;figcaption&gt;Loss Function: Backpropagation vs Sideways&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;The reason for this instability is obviously that we are not calculating the loss function in the manner it should be. The minute changes in a frame to the next will cause some irregularity between the activation function and the error derivative to minimize the cost function.&lt;/p&gt;
+
+&lt;p&gt;The reason this instability is a problem for us is that though the accuracy has improved (calculated by the no. of correct predictions), we have not considered the confidence in case of wrong predictions. According to this graph, the algorithm predicts with high confidence even if the prediction is wrong. However, in practical applications, we will prefer that the network should not be confident (i.e., the prediction probability should not be way above the threshold if the prediction is wrong).&lt;/p&gt;
+
+&lt;p&gt;Second, The paper considers that conventional backpropagation has some sort of overfitting which is being regularized to some extent by the sideways. But, if we are able to reduce this overfitting in BP by techniques such as dropout and regularization (though this may not be practically possible, just considering the case here), will the sideways be able to match the BP accuracy since the weight updates in Sideways are noisy?&lt;/p&gt;
+
+&lt;p&gt;Third, the Sideways is applicable for only time-series data. How can we modify the algorithm to make it work for non-time-series data as well? In hindsight, we just need to introduce some correlation between the consecutive activation functions so that we can use a similar concept. There can be multiple ways that can be tested such as taking average of the last two/three inputs while calculating the activation function (and similarly, averaging last derivatives during the backward pass).&lt;/p&gt;
+
+&lt;p&gt;All in all, I think that this is a great concept for improving speed and accuracy. The improvement figures reported in the paper are groundbreaking. Since there will be more hardware resources required for implementing Sideways, this opens up for a lot of research in architectural implementation to increase resource sharing.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Analog Neuromorphic Velocity Sensor</title>
+      <link>/post/analog_neuromorphic/</link>
+      <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/analog_neuromorphic/</guid>
+      <description>&lt;h4&gt;&lt;a style=&#34;color:navy&#34;; font-weight:normal; href=&#34;http://www.ini.uzh.ch/~kramer/pub/cas97.pdf&#34;&gt;&lt;u&gt;Paper Referred&lt;/u&gt;&lt;/a&gt;: Pulse-Based Analog VLSI Velocity Sensors&lt;/h4&gt;
+&lt;h4&gt;&lt;span style=&#34;color:navy&#34;; font-weight:normal&gt;Authors&lt;/span&gt;: Jorg Kramer, Rahul Sarpeshkar, and Christof Koch&lt;/h4&gt;
+&lt;br&gt;
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;Why this research?&lt;/span&gt;&lt;/h2&gt;
+
+The research  in neuromorphic algorithms and bio-inspired hardware has gained a lot of research in recent years. In this direction, this paper tries to mimic the basic function of human eye, i.e., to detect a moving object and its direction of motion, and to calculate its approximate speed. The perception of the object is based upon change in illumination due to the object, as detected by photodiodes. The current from the photodiodes is then processed to calculate the desired features, via a circuit presented in this paper. Besides calcualating the results correctly, we aim to  have the following features in our system:
+&lt;ul&gt;
+&lt;li&gt; Real time detection of the features to interact with a dynamic environment &lt;/li&gt;
+&lt;li&gt; Small area and low power requirements so that it can be used in IoT sensors &lt;/li&gt; 
+&lt;li&gt; Low computation requirements to reduce cost of the sensor &lt;/li&gt;
+&lt;/ul&gt;
+
+There are two types of intensity based motion algorithms: gradient based and correlation based. The token-based methods are more promising as they work intwo stage: first extracting some specific features from the image like edges, corners, etc. and then, tracking these features across time to calculate velocity and direction of motion. Implementing this method with computer vision algorithms is generally computationally expensive and thus, we require a simple circuit to implement our token-based algorithms.
+
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;The Paper&lt;/span&gt;&lt;/h2&gt;
+
+The complete circuit described in the paper is divided into two parts: Feature extraction stage and velocity computation stage. For the first stage, the circuit called *Temporal Edge Detector* converts changes in irradiance at two different positions to thin current pulses. For the second stage, these current pulses are given as inputs to *Voltage Shaping Circuits* and *Motion Circuits* (one for each direction of motion).
+
+![alt text](Introduction_Flow_Chart.PNG &#34;Circuit Flow Chart&#34;)
+
+Note that temporal edge detector and pulse shaping circuit are shared between both directions&#39; motion circuits to optimize resources and area.
+
+There are two types of motion circuits: *facilitate and trigger* (FT) and *facilitate and sample* (FS). FT motion circuit measures the time overlap between the binary pulses produced by two adjacent pulse shaping circuits and FS motion circuit samples the time varying output of first pulse shaping circuit by a thin pulse produced by second pulse shaping circuit. See the below images for clarity:
+
+&lt;div class=&#34;row&#34;&gt;
+  &lt;div class=&#34;column&#34;&gt;
+    &lt;figure&gt;
+    &lt;img src=&#34;FT_motion_circuit_1.PNG&#34; alt=&#34;Snow&#34; style=&#34;height:50%&#34;&gt;
+    &lt;figcaption&gt;FT Motion Circuit &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+  &lt;/div&gt;
+  &lt;div class=&#34;column&#34;&gt;
+    &lt;figure&gt;
+    &lt;img src=&#34;FS_motion_circuit_1.PNG&#34; alt=&#34;Forest&#34; style=&#34;height:100%&#34;&gt;
+    &lt;figcaption&gt;FS Motion Circuit &lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+Direction sensitivity is obtained by the fact that we get output only if P1 precedes P2.
+
+
+&lt;h3&gt;&lt;span style=&#34;color:navy&#34;&gt;Temporal Edge Detector&lt;/span&gt;&lt;/h3&gt;
+
+The Temporal Edge Detector Circuit converts a rapid increase in brightness to a current pulse. The circuit diagram is shown below:
+
+![alt text](Temporal_Edge_Detector_1.PNG &#34;Temporal Edge Detector Circuit&#34;)
+
+The diode D1, transistors Q1-Q4 and capacitors C1-C2 constitute a photoreceptor. This photoreceptor converts a change &amp;Delta;E in illumination E to a change in output voltage &amp;Delta;Vph as:
+
+![alt text](Photoreceptor_Equation.PNG &#34;Photoreceptor Output Equation&#34;)
+
+The output of the photoreceptor are the positive voltage spikes corresponding to ON stages. This is then converted to ON current by the next circuit. The transistors Q5-Q9 constitute an operational amplifier with a bias,connected to some other transistors Q10-Q13 and capacitors C3-C5, so that it is in a noninverting feedback configuration.The adaptive element Q10 is a sinh element, identical to that used in the photoreceptor, that prevents the node V- of the amplifier from floating by slowly adapting it to Vint. The current charging the node V- is given by: 
+
+&lt;div class=&#34;row&#34;&gt;
+  &lt;div class=&#34;column&#34;&gt;
+    &lt;img src=&#34;OpAmp_Eq_1.PNG&#34; alt=&#34;Snow&#34; style=&#34;height:50%&#34;&gt;
+  &lt;/div&gt;
+  &lt;div class=&#34;column&#34;&gt;
+    &lt;img src=&#34;OpAmp_Eq_2.PNG&#34; alt=&#34;Forest&#34; style=&#34;height:50%&#34;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+Detection of an ON edge causes Ie to be positive, supplied by Q12, whereas detection of an OFF edge causes it to be negative, supplied by Q11.
+
+Choosing to detect ON edges only, we sense the current in Q12 with the diode-connected Q13 and use Ve to mirror copies of it to succeeding circuits. The circuit thus serves as a differentiating, amplifying, and half-wave-rectifying element all-in-one.
+
+As long as Q12 is completely turned on, i.e., during sufficiently large ON edge transients, we can calculate the magnitude of the
+resulting output current pulse as:
+
+![alt text](Temporal_Output_Eq_1.PNG &#34;Edge Detector Output Current Equation&#34;)
+
+The output current Ie of the edge detector is then proportional to the temporal contrast , which is the product of the velocity and the spatial contrast , i.e.
+
+
+![alt text](Temporal_Output_Eq_2.PNG &#34;&#34;)
+
+
+&lt;h3&gt;&lt;span style=&#34;color:navy&#34;&gt;Pulse Shaping Circuit&lt;/span&gt;&lt;/h3&gt;
+
+The output current from the temporal edge detector is fed into the pulse shaping circuit. The pulse shaping circuit depends upon the motion circuit being used (i.e., FT or FS). The required output pulses from the pulse shaping circuit are:
+
+The FT motion sensor uses a nonlinear filtering circuit to convert the current pulse from the edge detector into a thin voltage spike that is translated into a voltage pulse of fixed amplitude and width by a refractory neuron circuit. 
+
+The FS motion sensor uses the same nonlinear filter to convert the current pulse from the edge detector into two signals, a thin voltage spike and a slowly decaying voltage signal. 
+
+Thus, we require nonlinear filter and refractory neuron circuits as pulse shaping circuits.
+
+&lt;h4&gt;&lt;span style=&#34;color:navy&#34;&gt;Nonlinear Filter&lt;/span&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Nonlinear_filter.PNG&#34; alt=&#34;alt text&#34; title=&#34;Nonlinear Filter Circuit&#34;&gt;&lt;figcaption&gt;Nonlinear Filter Circuit&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;The input to the circuit Iin is a current proportional to Ie, obtained from the mirror formed by connecting the output voltage of the edge detector ( Ve) to Vin of the filtering circuit. In response to an input current pulse, two voltage signals are generated: The voltage Vf produces a sharp spike, while the voltage Vs responds with a sharp onset and a log(t) like decay. The input Iin may be thought of as an impulse that sets the initial condition on the diode-capacitor
+subcircuit of Q4, Q5 and C.&lt;/p&gt;
+
+&lt;p&gt;For an initial condition with a pulse amplitude of Io, the diode-capacitor current Iout is given by&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Nonlinear_filter_Eq_1.PNG&#34; alt=&#34;alt text&#34;&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;After a sufficiently long time , such that Io&lt;em&gt;t &amp;gt;&amp;gt; C&lt;/em&gt;Vk, Iout(t) = C*Vk/t,&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Nonlinear_filter_Eq_2.PNG&#34; alt=&#34;alt text&#34;&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that the circuit does not have an explicit threshold for the value of Io where contrast-insensitivity begins. Neither does Vs have an explicit time constant determined by a bias voltage, since a diode-capacitor configuration intrinsically adapts to time constants over many orders of magnitude.&lt;/p&gt;
+
+&lt;h4&gt;&lt;span style=&#34;color:navy&#34;&gt;Refractory Neuron Circuit&lt;/span&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Nonlinear_filter.PNG&#34; alt=&#34;alt text&#34; title=&#34;Refractory Neuron Circuit&#34;&gt;&lt;figcaption&gt;Refractory Neuron Circuit&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;The voltage Vp represents the membrane potential and rests at ground. The voltage Vn represents the state of activation of the sodium
+conductance modeled by Q5-Q12 and rests at Vdd. The bias voltage Vl sets the leak current through Q4. The bias voltage Vd sets the pulse width of the output pulse. The bias voltage Vr sets the refractory period of the neuron or the minimum time between output pulses.&lt;/p&gt;
+
+&lt;h3&gt;&lt;span style=&#34;color:navy&#34;&gt;Results&lt;/span&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Results_1.PNG&#34; alt=&#34;alt text&#34; title=&#34;Voltage variation of different stages of the circuit&#34;&gt;&lt;figcaption&gt;Voltage variation of different stages of the circuit&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Results_2.PNG&#34; alt=&#34;alt text&#34; title=&#34;Voltage variation of different stages of the circuit&#34;&gt;&lt;figcaption&gt;Voltage variation of different stages of the circuit&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Compression with Multi ECC Techniques</title>
+      <link>/post/compression_with_multi_ecc/</link>
+      <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/compression_with_multi_ecc/</guid>
+      <description>&lt;p&gt;&lt;h4&gt;&lt;a style=&#34;color:navy&#34;; font-weight:normal; href=&#34;https://nanocad.ee.ucla.edu/wp-content/papercite-data/pdf/w15.pdf&#34;&gt;&lt;u&gt;Paper Referred&lt;/u&gt;&lt;/a&gt;: Compression with Multi-ECC: Enhanced Error Resiliency for Magnetic Memories&lt;/h4&gt;
+&lt;h4&gt;&lt;span style=&#34;color:navy&#34;; font-weight:normal&gt;Authors&lt;/span&gt;: Irina Alam, Saptadeep Pal and Puneet Gupta&lt;/h4&gt;
+&lt;br&gt;
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;Why this research?&lt;/span&gt;&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;With the need for different properties (such as higher density, non-volatility, and higher performance) of memories, DRAM can’t be used for some applications. There are various candidates for replacing DRAMs such as PCM, STTRAM, and ReRAM. This research uses STTRAM because of zero leakage power and better endurance.&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;STT_RAM_Schematic.PNG&#34; alt=&#34;alt text&#34; title=&#34;Schematic of STT-RAM showing the anti-parallel and parallel states&#34;&gt;&lt;figcaption&gt;Schematic of STT-RAM showing the anti-parallel and parallel states&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;However, there are many issues associated with this memory such as a) With read current getting comparable to the write currents at lower nodes because of the unidirectional read operation, the read operation can alter the stored value. Since the read operation is asymmetric, this error comes when reading a 1 (i.e., it can switch 1 to 0), b) the time required for writing a data is lesser for writing a 0 as compared to writing a 1. Thus, write error occurs when current is removed before 1 has been written, c) Thermal instability of STTRAMs causes the stored data to flip. This stability can be increased by increasing the write current, thus reducing the write time. While the first 2 errors can be reduced by reducing the weight of hamming code (i.e., reducing the no. of 1s). the third can be reduced by increasing the robustness (by increasing the area).&lt;/p&gt;
+
+&lt;p&gt;&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;The Paper&lt;/span&gt;&lt;/h2&gt;
+This paper proposes a new method for detecting and correcting errors in code while reading and writing data into STTRAM. The compression in code is important in the sense that it leaves bits for error detection and corrections schemes. Better the compression, better is the error correction possible. The paper proposes Compression with Multi-ECC (CME) approach, using a Bit plane compression (modified for 64-bit words) which consists of delta-BitPlane-XoR to transform the data &amp;amp; encoding (run-length encoding combined with frequent pattern encoding) to compress the data, and using different types of correcting techniques according to the no. of bits in the compressed data. The proposed methodology copies the cache line only once and uses the duplicated data only if the original data has an error. The paper discusses the final cache line lengths based on the range in which compressed line length lies, padding 0s for the remaining bits.&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;BPT_Scheme_Overview.PNG&#34; alt=&#34;alt text&#34; title=&#34;An overview of the Bit-Plane Transformation scheme&#34;&gt;&lt;figcaption&gt;An overview of the Bit-Plane Transformation scheme&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, the authors prove how adding 4 bits to the code can increase its robustness and use Dynamic Programming to choose the 6 final codes. Another set of bits called tag bits is required to denote the compression and ECC techniques used on the original code. The paper discusses two methods for storing tag bits: to store these bits separately in the memory which would require the data to wait till these bits arrive (otherwise, the decoding of compressed data would have started after the first burst of data) causing latency overhead and second, to include these bits in the compressed cache line itself, causing ECC to store the compressed data in 8 lesser bits.&lt;/p&gt;
+
+&lt;p&gt;The proposed methodology is evaluated against two design points in terms of write, read and retention error rates. The results show a reduction in hamming weight and thus, a reduction in block failure probability.&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Avg_Hamming_weight_Comparison.PNG&#34; alt=&#34;alt text&#34; title=&#34;Comparsion of Average Hamming weight for different benchmarks&#34;&gt;&lt;figcaption&gt;Comparsion of Average Hamming weight for different benchmarks&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;It is observed that the failure probability increases when the hamming code is inverted (even though the inverted code has less weight). This is because the inversion requires an extra bit per word, reducing the no. of bits available for error detection &amp;amp; correction schemes. This issue is handled by using a single bit for multiple inverted words and thus, saving the bits for ECC techniques.&lt;/p&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;Error_rate_Comparison.PNG&#34; alt=&#34;alt text&#34; title=&#34;Reduction in block error rate induced due to WER, RER and RDR&#34;&gt;&lt;figcaption&gt;Reduction in block error rate induced due to WER, RER and RDR&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;The paper then discusses the overheads due to ECC schemes: area overhead is not significant when compared to the processor size and energy overhead is &amp;lt; 1% of per-bit read energy. For the scheme with separately stored tag bits, the proposed ECC decoding has no latency overhead while it is 1 cycle for the scheme with tag bits embedded into the cache line. Since the priority first word (intended to improve performance) cannot be implemented, it causes more latency overhead in both the schemes.&lt;/p&gt;
+
+&lt;p&gt;The above methodology is compared with another compression scheme: BΔI. While this compression scheme reduces the hamming weight more efficiently than BPC and thus is expected to have lower error rates, BPC outperforms BΔI when the extra bits available after compression are used for error detection and correction methods. Then, the paper analyzes the reliability of using STTRAMs instead of DRAMs. While the STTRAM promises higher density and non-volatility over DRAMs, it requires ECC protection and has read, write and retention errors which can be much worse than transient bit errors in DRAM. But when the proposed protection scheme is used along with scrubbing, STTRAMs can be as reliable as the DRAMs.&lt;/p&gt;
+
+&lt;p&gt;&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;What Next? My two cents&lt;/span&gt;&lt;/h2&gt;
+If the code represents an integer, MSBs of the integers can have better error detection and correction schemes than LSBs. This way, if the correction method is unable to correct the code, there will be a minimal deviation from the actual value. For example, if the total compressed length is 46 bits, the 17 MSBs (after compression) can be represented with 19 extra bits for 3EC4ED and 29 LSBs can be represented with 7 LSBs for SECDED. This will require separate compression for MSBs and LSBs. When compared with using two codes each of 23 data bits and 13 extra bits for DECTED method, this method gives more emphasis on correcting MSB errors. This way, we can use a slightly deviated output if the intended application can bear some inaccuracy in the integer output.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sparse Matrix Multiplication</title>
+      <link>/post/sparse_matrix_multiplication/</link>
+      <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/sparse_matrix_multiplication/</guid>
+      <description>&lt;p&gt;&lt;h4&gt;&lt;a style=&#34;color:navy&#34;; font-weight:normal; href=&#34;https://arxiv.org/pdf/1906.00327.pdf&#34;&gt;&lt;u&gt;Paper Referred&lt;/u&gt;&lt;/a&gt;: Sparse Matrix to Matrix Multiplication: A Representation and Architecture for Acceleration&lt;/h4&gt;
+&lt;h4&gt;&lt;span style=&#34;color:navy&#34;; font-weight:normal&gt;Authors&lt;/span&gt;: Pareesa Ameneh Golnari, Sharad Malik&lt;/h4&gt;
+&lt;br&gt;
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;Why this research?&lt;/span&gt;&lt;/h2&gt;
+With the increasing demand of neural networks in new application areas and large no. of training features required for better accuracy, it is becoming increasingly important to reduce the memory required to store this data. Though the sparse matrix is an efficient way to store this data more efficiently, there is no efficient way for the sparse matrix to matrix multiplication. This paper proposes a new representation for sparse matrices and an architecture for their multiplication. A speedup of 14-49 times in accessing the data and of 9-30 times in multiplication is demonstrated.&lt;/p&gt;
+
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;The Paper&lt;/span&gt;&lt;/h2&gt;
+The paper compares the random data access cost of various sparse formats with compressed row storage (CRS) being one of the most efficient formats. This paper proposes an Indexed CRS format to reduce the complexity of accessing a non-zero data. Each row of the matrix is divided into sections and each section is further divided into blocks. Each section is represented by a counter vector which contains no. of non-zero values before this section followed by no. of non-zero values in each of its blocks. Any values in this representation can be transformed into the corresponding matrix index (and vice-versa) using the information in section counter vectors. To locate an element at (i, j), the corresponding section no. is ⌊*j/S*⌋ and block no. is ⌊*(j%s)/b*⌋ where S and b are the lengths of the section and block respectively. Thus, for searching an element (i,j), we need to see only the corresponding block, reducing the random memory access to (*b/2 + 1*). Comparing this with the conventional CRS format, memory access reduces by a factor of *ND/(b+2)* and required storage increases by a factor of *(2DS+1)/(2DS)*, where N is the no. of rows and D is density (ratio of no. of non-zeros to dataset size). 
+
+Next, this paper proposes a new architecture for implementing the sparse matrix multiplication (SpMM) represented in the format described above. In this direction, the paper discusses an algorithm for a dot product of the 1st matrix’s row a with 2nd matrix’s column b. Comparing elements of these two vectors, if the index of a’s ith element equals b’s jth element in the original matrices (found using section counter vector), the product of their values is added to the dot product and both operands are incremented. Else, only the vector with the smaller index is checked for the next element. While this algorithm serves its purpose, it suffers from a slower movement of operands because operand with larger index is not incremented and stalling where the inputs are shared across multiple nodes. 
+
+To account for these drawbacks, a synchronized mesh architecture is proposed. Each node of the mesh has a comparator, a buffer and a flag located before the MAC unit. Unlike the previous algorithm, if the indices of two operands at hand do not match, the operand with a larger index is stored in the buffer and the corresponding flag is set, thus avoiding stalling of the data and using two operands per cycle. During the next comparison of indices, the flag is read to indicate if a value is stored in the buffer. If the operand with the smaller index can be matched with a buffered value, buffered value is used for multiplication. Synchronization is performed at the end of every R elements and buffers are erased to ensure that operand buffers are most R (depth of operand) element in size, thus preventing any stall. 
+
+Next, the proposed sparse format and multiplication algorithm are evaluated against various datasets. It is observed that this architecture’s acceleration increases (i.e., latency reduces) as the density (i.e., the ratio of no. of non-zero elements with dataset size) reduces. This architecture is then compared with previous approaches for the given range of densities. The proposed SpMM architecture shows a 15-39 times improvement over conventional matrix multiplication and 2-30 times improvement over FPIC. 
+
+&lt;h2&gt;&lt;span style=&#34;color:navy&#34;&gt;&lt;/span&gt;&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>[Submitted] Timing Calibration in Interleaved Current Steering DACs</title>
+      <link>/publication/conference-paper-2019-ieee-international-symposium-on-circuits-and-systems-iscas/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper-2019-ieee-international-symposium-on-circuits-and-systems-iscas/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A year at intel</title>
+      <link>/post/year-at-intel/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>/post/year-at-intel/</guid>
+      <description>&lt;p&gt;I joined Intel in June 2018 and it feels just like yesterday. This journey has been full of technical learning and professional development.&lt;/p&gt;
+
+&lt;p&gt;I am working in the Physical Design team of the Image Processing Unit here, on meeting partition constraints of power, frequency, and area. This involves developing new algorithms for improving the quality and speed of convergence.&lt;/p&gt;
+
+&lt;p&gt;I work under some amazing mentors who motivate me to challenge myself time and again. My colleagues share my enthusiasm and are always there to help me with my ideas. Working till late in the evening and brainstorming sessions are the best parts of my day.&lt;/p&gt;
+
+&lt;p&gt;Being my first employer, Intel has helped me to get the gist of what is actually done in various teams across the Industry, a perspective far from what I had in college about the Industry.&lt;/p&gt;
+
+&lt;p&gt;Although the so-called work-life balance depends upon what stage the project is in. Towards the end, this sometimes involves spending the whole night in the office, which I found surprisingly interesting, though others who have family or have been through the process several times would likely disagree.&lt;/p&gt;
+
+&lt;p&gt;Going on team outings is definitely one of the major events I look up to. Sharing the common love for food, we have been to almost every buffet in Bangalore for team lunches. The recent potluck lunches and weekend sports have certainly played their part in bringing us together as a team.&lt;/p&gt;
+
+&lt;p&gt;Recently, the management has started focusing more on &lt;em&gt;Product Output&lt;/em&gt; rather than &lt;em&gt;Individual Growth&lt;/em&gt;. Though both of these targets should go hand in hand, we are always stuffed with more projects of the same kind. I am always curious to know more but working on the same concepts repetitively becomes mundane.  Though there is a fair amount of office politics, nothing unusual in a corporate, but this can be avoided with fairly minimal effort.&lt;/p&gt;
+
+&lt;p&gt;All in all, at Intel, I find a culture conducive for growth and learning. Whether I wish to work from home or leave the office early, there are no questions asked as long as I do justice with the work. The schedule becomes hectic sporadically, but we have always worked as a team in meeting deadlines.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>TSV Induced Stress Model and Its Application in Delay Estimation </title>
+      <link>/publication/conference-paper-2018-ieee-soi-3d-subthreshold-microelectronics-technology-unified-conference-s3s/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper-2018-ieee-soi-3d-subthreshold-microelectronics-technology-unified-conference-s3s/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cell Delay modeling for TSV induced stress in 3D ICs</title>
+      <link>/project/delay-modeling-tsv/</link>
+      <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
+      <guid>/project/delay-modeling-tsv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Design of Analog Neuromorphic Circuits</title>
+      <link>/project/nueromorphic/</link>
+      <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>/project/nueromorphic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Modeling the effect of variability on the timing response of CMOS inverter-transmission gate structure</title>
+      <link>/publication/conference-paper-2018-international-symposium-on-devices-circuits-and-systems-isdcs/</link>
+      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper-2018-international-symposium-on-devices-circuits-and-systems-isdcs/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Delay Modelling of a Static flip flop</title>
+      <link>/project/delay-modeling-flip-flop/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>/project/delay-modeling-flip-flop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dynamic Speed Limit</title>
+      <link>/project/dynamic-speed-limit/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>/project/dynamic-speed-limit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Propeller Clock</title>
+      <link>/project/propeller-clock/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>/project/propeller-clock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Timing Calibration Algorithm for Interleaved Current Steering DAC</title>
+      <link>/project/dac/</link>
+      <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/project/dac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>On Device Activity Recognition</title>
+      <link>/project/activity-recognition/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/project/activity-recognition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>I-V characteristic variations due to defects in CMOS</title>
+      <link>/project/defects-cmos/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/project/defects-cmos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Campus Buddy</title>
+      <link>/project/campus-buddy/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/project/campus-buddy/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
